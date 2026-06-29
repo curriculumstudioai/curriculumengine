@@ -7,8 +7,35 @@
 /dataSources/
 /dataSources.local.xml
 
-# Environment / secret files
+# Environment files
 .env
 **/.env
 .env.local
 **/.env.local
+
+# Node
+node_modules/
+dist/
+build/
+
+# Python
+venv/
+**/venv/
+.venv/
+**/.venv/
+
+#Python cache
+__pycache__/
+**/__pycache__/
+*.pyc
+
+# IntelliJ
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/shelf/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log

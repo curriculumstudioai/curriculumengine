@@ -12,3 +12,14 @@
 **/.env
 .env.local
 **/.env.local
+
+# Python virtual environments
+/venv/
+venv/
+**/venv/
+.venv/
+**/.venv/
+
+__pycache__/
+*.pyc
+.DS_Store
