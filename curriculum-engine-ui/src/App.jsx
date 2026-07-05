@@ -12,21 +12,25 @@ function App() {
 
   const [curriculumText, setCurriculumText] = useState("");
 
-  //NEW generatePreview FUNCTION
+  //STEP 7 UPDATED generatedPreview function
   async function generatePreview() {
     try {
       setCurriculumText("Generating curriculum from AI...");
 
-      const response = await fetch("http://localhost:3001/api/generate-curriculum", {
+      const API_BASE_URL =
+          import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
+
+      const response = await fetch(`${API_BASE_URL}/generate-curriculum`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          subject,
-          level,
-          weeks,
-          objective,
+          learning_objective: objective,
+          subject: subject,
+          course_level: level,
+          duration_weeks: Number(weeks),
+          organization_id: 1,
         }),
       });
 
@@ -38,10 +42,45 @@ function App() {
 
       setCurriculumText(data.curriculum);
     } catch (error) {
-      setCurriculumText("Error generating curriculum. Check your backend server and API key.");
+      setCurriculumText("Error generating curriculum. Check your FastAPI backend, CORS settings, and API key.");
       console.error(error);
     }
   }
+
+
+
+
+  //FUNCTION REPLACED WITH NEWER FUNCTION ABOVE
+  // //NEW generatePreview FUNCTION
+  // async function generatePreview() {
+  //   try {
+  //     setCurriculumText("Generating curriculum from AI...");
+  //
+  //     const response = await fetch("http://localhost:3001/api/generate-curriculum", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         subject,
+  //         level,
+  //         weeks,
+  //         objective,
+  //       }),
+  //     });
+  //
+  //     const data = await response.json();
+  //
+  //     if (!response.ok) {
+  //       throw new Error(data.error || "Request failed.");
+  //     }
+  //
+  //     setCurriculumText(data.curriculum);
+  //   } catch (error) {
+  //     setCurriculumText("Error generating curriculum. Check your backend server and API key.");
+  //     console.error(error);
+  //   }
+  // }
 
 
 
