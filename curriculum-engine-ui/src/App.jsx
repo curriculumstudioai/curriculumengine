@@ -148,8 +148,8 @@ function App() {
   return (
       <div className="app">
         <header className="hero">
-          <h1>Curriculum Engine</h1>
-          <p>Create, preview, edit, and copy AI-generated curriculum content.</p>
+          <h1>Curriculum Studio</h1>
+          <p>Create, Preview, Edit and Copy AI-Generated Curriculum Content.</p>
         </header>
 
         <main className="layout">
