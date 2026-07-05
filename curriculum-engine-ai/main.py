@@ -23,6 +23,7 @@ app = FastAPI(title="Curriculum Studio API")
 
 allowed_origins = os.getenv(
     "ALLOWED_ORIGINS",
+    # "https://curriculum-studio-ai.vercel.app/"
     "http://localhost:5173,https://curriculum-studio-ai.vercel.app/"
 ).split(",")
 
