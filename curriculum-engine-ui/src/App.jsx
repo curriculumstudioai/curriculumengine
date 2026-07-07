@@ -157,7 +157,7 @@ function App() {
             <h2>Generate Curriculum</h2>
 
             <label>Subject</label>
-            <input value={subject} onChange={(e) => setSubject(e.target.value)} />
+            <input value={subject} onChange={(e) => setSubject(e.target.value)}/>
 
             <label>Course Level</label>
             <select value={level} onChange={(e) => setLevel(e.target.value)}>
@@ -203,13 +203,14 @@ function App() {
             <ReactMarkdown>{curriculumText}</ReactMarkdown>
           </section>
         </main>
+        <footer className="footer">
+          <p>&copy; 2026 Curriculum Studio. All rights reserved. L.S.Lewis</p>
+        </footer>
       </div>
   );
 }
 
 export default App;
-
-
 
 
 // import { useState } from 'react'
