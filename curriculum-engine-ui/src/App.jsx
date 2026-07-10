@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import html2pdf from "html2pdf.js";
+import logo from "./assets/curriculum-studio-logo.png";
 import "./App.css";
 
 function App() {
@@ -99,8 +100,12 @@ function App() {
   return (
       <div className="app">
         <header className="hero">
-          <h1>Curriculum Studio</h1>
-          <p>Create, Preview, Edit and Copy AI-Generated Curriculum Content.</p>
+          <img
+              src={logo}
+              alt="Curriculum Studio logo"
+              className="logo"
+          />
+          <p>Create | Preview | Edit | Copy AI-Generated Curriculum Content</p>
         </header>
 
         <main className="layout">
