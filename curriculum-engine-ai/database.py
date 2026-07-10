@@ -22,17 +22,6 @@ def get_connection():
     )
 
 
-#Step 3 replace with above get_connection()
-
-# def get_connection():
-#     return psycopg2.connect(
-#         dbname=os.getenv("DB_NAME"),
-#         user=os.getenv("DB_USER"),
-#         password=os.getenv("DB_PASSWORD"),
-#         host=os.getenv("DB_HOST"),
-#         port=os.getenv("DB_PORT")
-#     )
-
 
 def save_curriculum_to_database(curriculum: CurriculumAIOutput, organization_id: int = 1):
     conn = get_connection()
