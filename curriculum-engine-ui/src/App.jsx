@@ -1,6 +1,7 @@
 
 import { useState, useRef } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import html2pdf from "html2pdf.js";
 import "./App.css";
 
@@ -175,7 +176,9 @@ function App() {
             </div>
 
             <div ref={curriculumRef} className="teacher-preview">
-              <ReactMarkdown>{curriculumText}</ReactMarkdown>
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {curriculumText}
+              </ReactMarkdown>
             </div>
           </section>
         </main>

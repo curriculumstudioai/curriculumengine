@@ -133,6 +133,39 @@ button:hover {
   font-size: 14px;
 }
 
+/*PDF table update 7/10/2026 */
+.teacher-preview {
+  background-color: white;
+  color: black;
+  padding: 20px;
+}
+
+.teacher-preview table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 10px;
+}
+
+.teacher-preview th,
+.teacher-preview td {
+  border: 1px solid #333;
+  padding: 6px;
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.teacher-preview th {
+  background-color: #eeeeee;
+  font-weight: bold;
+}
+
+.teacher-preview tr {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
 /*.counter {*/
 /*  font-size: 16px;*/
 /*  padding: 5px 10px;*/
