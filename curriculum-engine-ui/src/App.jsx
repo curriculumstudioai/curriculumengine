@@ -105,7 +105,7 @@ function App() {
               alt="Curriculum Studio logo"
               className="logo"
           />
-          <p>Create | Preview | Edit | Copy AI-Generated Curriculum Content</p>
+          <p>Create | Preview | Edit | Copy - AI-Generated Curriculum Content</p>
         </header>
 
         <main className="layout">
