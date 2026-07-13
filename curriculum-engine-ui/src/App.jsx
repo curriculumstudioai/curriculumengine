@@ -49,7 +49,9 @@ function App() {
         .save();
   };
 
-  // STEP 7 UPDATED generatePreview function
+  //*********NEW UPDATE -- REPLACED WITH NEW FUNCTION TO HANDLE INITIAL REQUEST TIMEOUT ERROR 7/12/2026 L.S.LEWIS
+
+  // Generate the curriculum preview and retry once if the first request fails
   async function generatePreview() {
     try {
       setCurriculumText("Generating Curriculum From AI...");
@@ -57,25 +59,41 @@ function App() {
       const API_BASE_URL =
           import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
 
-      const response = await fetch(
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          learning_objective: objective,
+          subject: subject,
+          course_level: level,
+          duration_weeks: Number(weeks),
+          organization_id: 1,
+        }),
+      };
+
+      // First request
+      let response = await fetch(
           `${API_BASE_URL}/generate-curriculum`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              learning_objective: objective,
-              subject: subject,
-              course_level: level,
-              duration_weeks: Number(weeks),
-              organization_id: 1,
-            }),
-          }
+          requestOptions
       );
+
+      // If the first request fails, wait 3 seconds and retry once
+      if (!response.ok) {
+        console.log("First request failed. Retrying in 3 seconds...");
+
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+
+        response = await fetch(
+            `${API_BASE_URL}/generate-curriculum`,
+            requestOptions
+        );
+      }
 
       const data = await response.json();
 
+      // If the second request also fails, display the error
       if (!response.ok) {
         throw new Error(data.error || "Request failed.");
       }
@@ -83,11 +101,53 @@ function App() {
       setCurriculumText(data.curriculum);
     } catch (error) {
       setCurriculumText(
-          "Error generating curriculum. Check your FastAPI backend, CORS settings, and API key."
+          "The curriculum service is temporarily unavailable. Please try again."
       );
-      console.error(error);
+
+      console.error("Curriculum generation error:", error);
     }
   }
+
+  // *********STEP 7 FIRST UPDATED generatePreview function
+
+  // async function generatePreview() {
+  //   try {
+  //     setCurriculumText("Generating Curriculum From AI...");
+  //
+  //     const API_BASE_URL =
+  //         import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
+  //
+  //     const response = await fetch(
+  //         `${API_BASE_URL}/generate-curriculum`,
+  //         {
+  //           method: "POST",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //           body: JSON.stringify({
+  //             learning_objective: objective,
+  //             subject: subject,
+  //             course_level: level,
+  //             duration_weeks: Number(weeks),
+  //             organization_id: 1,
+  //           }),
+  //         }
+  //     );
+  //
+  //     const data = await response.json();
+  //
+  //     if (!response.ok) {
+  //       throw new Error(data.error || "Request failed.");
+  //     }
+  //
+  //     setCurriculumText(data.curriculum);
+  //   } catch (error) {
+  //     setCurriculumText(
+  //         "Error generating curriculum. Check your FastAPI backend, CORS settings, and API key."
+  //     );
+  //     console.error(error);
+  //   }
+  // }
 
 
 
