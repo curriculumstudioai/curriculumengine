@@ -215,7 +215,7 @@ function CurriculumGenerator() {
     );
 }
 
-export default CurriculumGenerator;;
+export default CurriculumGenerator;
 
 
 
