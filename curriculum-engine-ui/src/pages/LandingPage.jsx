@@ -38,8 +38,7 @@ function LandingPage() {
                         </p>
 
                         <h1>
-                            Turn Learning Objectives into Curriculum Plans
-                            in Minutes
+                            Turn Learning Objectives into Curriculum Plans in Minutes
                         </h1>
 
                         <p className="hero-description">
