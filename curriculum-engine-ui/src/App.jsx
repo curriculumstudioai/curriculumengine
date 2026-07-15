@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import html2pdf from "html2pdf.js";
 import logo from "../assets/curriculum-studio-logo.png";
-import "./App.css";
+//import "./App.css";
 
 import {
   BrowserRouter,
