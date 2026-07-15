@@ -54,9 +54,9 @@ function LandingPage() {
                                 Try Curriculum Studio
                             </Link>
 
-                            <!--<a href="/generate" className="button">
-                                Try Curriculum Studio
-                            </a>-->
+                            {/*<a href="/generate" className="button">*/}
+                            {/*     Try Curriculum Studio*/}
+                            {/*</a>*/}
 
                             <a href="#beta" className="button button-secondary">
                                 Join the Beta
