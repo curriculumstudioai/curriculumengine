@@ -1,0 +1,407 @@
+/* Basic reset */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background-color: #ffffff;
+    color: #475569;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+    color: #172033;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+/* General layout */
+
+.container {
+    width: min(1120px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+.section {
+    padding: 80px 0;
+}
+
+.alternate-section {
+    background-color: #f7f8fc;
+}
+
+.section-heading {
+    max-width: 700px;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+.section-heading h2 {
+    margin-bottom: 14px;
+    font-size: 2rem;
+}
+
+.section-label {
+    margin-bottom: 10px;
+    color: #5548d9;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Header */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #e2e8f0;
+    background-color: #ffffff;
+}
+
+.header-content {
+    display: flex;
+    min-height: 72px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.logo {
+    color: #172033;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #5548d9;
+}
+
+.nav-list {
+    display: flex;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-list a {
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+
+.nav-list a:hover {
+    color: #5548d9;
+}
+
+/* Buttons */
+
+.button {
+    display: inline-flex;
+    min-height: 48px;
+    padding: 11px 22px;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #5548d9;
+    border-radius: 6px;
+    background-color: #5548d9;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.button:hover {
+    border-color: #4034b5;
+    background-color: #4034b5;
+}
+
+.button-secondary {
+    background-color: transparent;
+    color: #5548d9;
+}
+
+.button-secondary:hover {
+    background-color: #f0efff;
+    color: #4034b5;
+}
+
+.button-small {
+    min-height: 40px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+}
+
+/* Hero */
+
+.hero {
+    padding: 110px 0;
+    background-color: #f8f9ff;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.hero h1 {
+    margin-bottom: 24px;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    line-height: 1.1;
+}
+
+.hero-description {
+    max-width: 720px;
+    margin: 0 auto;
+    font-size: 1.15rem;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 30px;
+}
+
+.small-text {
+    margin-top: 18px;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+/* Feature cards */
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.feature-card {
+    padding: 28px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.feature-card h3 {
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    margin-bottom: 0;
+}
+
+/* How it works */
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.step {
+    padding: 30px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.step-number {
+    display: flex;
+    width: 42px;
+    height: 42px;
+    margin-bottom: 18px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #5548d9;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.step h3 {
+    margin-bottom: 10px;
+}
+
+.step p {
+    margin-bottom: 0;
+}
+
+/* Beta signup */
+
+.beta-section {
+    padding: 80px 0;
+    background-color: #172033;
+}
+
+.beta-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 60px;
+}
+
+.beta-section h2 {
+    margin-bottom: 14px;
+    color: #ffffff;
+    font-size: 2rem;
+}
+
+.beta-section p {
+    color: #cbd5e1;
+}
+
+.beta-section .section-label {
+    color: #a9a1ff;
+}
+
+.signup-form {
+    padding: 28px;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.signup-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #172033;
+    font-weight: bold;
+}
+
+.signup-form input {
+    width: 100%;
+    min-height: 48px;
+    margin-bottom: 14px;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+}
+
+.signup-form input:focus {
+    border-color: #5548d9;
+    outline: 2px solid #dedbff;
+}
+
+.signup-form .button {
+    width: 100%;
+}
+
+/* Footer */
+
+.site-footer {
+    padding: 28px 0;
+    border-top: 1px solid #e2e8f0;
+    background-color: #ffffff;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.footer-content p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    color: #5548d9;
+}
+
+/* Tablet and mobile */
+
+@media (max-width: 900px) {
+    .nav-list {
+        display: none;
+    }
+
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .beta-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .section {
+        padding: 60px 0;
+    }
+
+    .header-content {
+        min-height: 64px;
+    }
+
+    .header-content .button-small {
+        display: none;
+    }
+
+    .hero {
+        padding: 80px 0;
+    }
+
+    .hero h1 {
+        font-size: 2.4rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-buttons .button {
+        width: 100%;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
