@@ -1,7 +1,54 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/landing-page.css";
 
 function LandingPage() {
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleBetaSignup = async (event) => {
+        event.preventDefault();
+
+        setIsSubmitting(true);
+        setMessage("");
+
+        try {
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/api/beta-signup`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: email.trim(),
+                    }),
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(
+                    data.detail || "Unable to join the beta program."
+                );
+            }
+
+            setMessage(data.message);
+            setEmail("");
+        } catch (error) {
+            setMessage(
+                error instanceof Error
+                    ? error.message
+                    : "Unable to join the beta program."
+            );
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+
     return (
         <>
             <header className="site-header">
@@ -175,23 +222,51 @@ function LandingPage() {
                                 provide feedback.
                             </p>
                         </div>
-
-                        <form className="signup-form">
+                        <form className="signup-form" onSubmit={handleBetaSignup}>
                             <label htmlFor="email">Email address</label>
 
                             <input
                                 type="email"
                                 id="email"
                                 name="email"
+                                value={email}
+                                onChange={(event) => setEmail(event.target.value)}
                                 placeholder="you@example.com"
                                 autoComplete="email"
                                 required
+                                disabled={isSubmitting}
                             />
 
-                            <button type="submit" className="button">
-                                Join the Beta
+                            <button
+                                type="submit"
+                                className="button"
+                                disabled={isSubmitting}
+                            >
+                                {isSubmitting ? "Joining..." : "Join the Beta"}
                             </button>
+
+                            {message && (
+                                <p className="signup-message" role="status">
+                                    {message}
+                                </p>
+                            )}
                         </form>
+                        {/*<form className="signup-form">*/}
+                        {/*    <label htmlFor="email">Email address</label>*/}
+
+                        {/*    <input*/}
+                        {/*        type="email"*/}
+                        {/*        id="email"*/}
+                        {/*        name="email"*/}
+                        {/*        placeholder="you@example.com"*/}
+                        {/*        autoComplete="email"*/}
+                        {/*        required*/}
+                        {/*    />*/}
+
+                        {/*    <button type="submit" className="button">*/}
+                        {/*        Join the Beta*/}
+                        {/*    </button>*/}
+                        {/*</form>*/}
                     </div>
                 </section>
             </main>

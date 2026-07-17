@@ -3,16 +3,26 @@
 import os
 import json
 
+
 import instructor
 from openai import OpenAI
 from dotenv import load_dotenv
-from fastapi import FastAPI
+
+from fastapi import FastAPI, HTTPException
+from psycopg2.errors import UniqueViolation
+
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+
+
+from schemas import BetaSignupRequest
+from database import get_connection
 
 from models import CurriculumAIOutput
 from prompts import SYSTEM_PROMPT
 from database import save_curriculum_to_database
+
+
 
 
 load_dotenv()
@@ -43,6 +53,69 @@ class CurriculumRequest(BaseModel):
     course_level: str
     duration_weeks: int
     organization_id: int = 1
+
+
+
+@app.post("/api/beta-signup")
+def join_beta_program(signup: BetaSignupRequest):
+    email = str(signup.email).strip().lower()
+
+    connection = None
+    cursor = None
+
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+
+        cursor.execute(
+            """
+            INSERT INTO beta_signup (email)
+            VALUES (%s)
+            RETURNING id, email, status, created_at;
+            """,
+            (email,)
+        )
+
+        new_signup = cursor.fetchone()
+        connection.commit()
+
+        return {
+            "message": "You have successfully joined the beta program.",
+            "signup": {
+                "id": new_signup[0],
+                "email": new_signup[1],
+                "status": new_signup[2],
+                "created_at": new_signup[3]
+            }
+        }
+
+    except UniqueViolation:
+        if connection:
+            connection.rollback()
+
+        raise HTTPException(
+            status_code=409,
+            detail="This email address is already on the beta list."
+        )
+
+    except Exception as error:
+        if connection:
+            connection.rollback()
+
+        print(f"Beta signup error: {error}")
+
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to join the beta program at this time."
+        )
+
+    finally:
+        if cursor:
+            cursor.close()
+
+        if connection:
+            connection.close()
+
 
 
 @app.get("/")
@@ -226,6 +299,8 @@ def generate_curriculum_endpoint(request: CurriculumRequest):
         "curriculum": markdown,
         "data": curriculum.model_dump()
     }
+
+
 
 
 if __name__ == "__main__":
