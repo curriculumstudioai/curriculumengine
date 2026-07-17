@@ -14,8 +14,10 @@ function LandingPage() {
         setMessage("");
 
         try {
+            const apiUrl = import.meta.env.VITE_API_URL;
+
             const response = await fetch(
-                `${import.meta.env.VITE_API_URL}/api/beta-signup`,
+                `${apiUrl}/api/beta-signup`,
                 {
                     method: "POST",
                     headers: {
@@ -27,7 +29,20 @@ function LandingPage() {
                 }
             );
 
-            const data = await response.json();
+            const contentType = response.headers.get("content-type");
+            let data;
+
+            if (contentType && contentType.includes("application/json")) {
+                data = await response.json();
+            } else {
+                const responseText = await response.text();
+
+                console.error("Non-JSON server response:", responseText);
+
+                throw new Error(
+                    `Server returned an invalid response. Status: ${response.status}`
+                );
+            }
 
             if (!response.ok) {
                 throw new Error(
@@ -38,6 +53,8 @@ function LandingPage() {
             setMessage(data.message);
             setEmail("");
         } catch (error) {
+            console.error("Beta signup error:", error);
+
             setMessage(
                 error instanceof Error
                     ? error.message
@@ -47,6 +64,47 @@ function LandingPage() {
             setIsSubmitting(false);
         }
     };
+
+    // const handleBetaSignup = async (event) => {
+    //     event.preventDefault();
+    //
+    //     setIsSubmitting(true);
+    //     setMessage("");
+    //
+    //     try {
+    //         const response = await fetch(
+    //             `${import.meta.env.VITE_API_URL}/api/beta-signup`,
+    //             {
+    //                 method: "POST",
+    //                 headers: {
+    //                     "Content-Type": "application/json",
+    //                 },
+    //                 body: JSON.stringify({
+    //                     email: email.trim(),
+    //                 }),
+    //             }
+    //         );
+    //
+    //         const data = await response.json();
+    //
+    //         if (!response.ok) {
+    //             throw new Error(
+    //                 data.detail || "Unable to join the beta program."
+    //             );
+    //         }
+    //
+    //         setMessage(data.message);
+    //         setEmail("");
+    //     } catch (error) {
+    //         setMessage(
+    //             error instanceof Error
+    //                 ? error.message
+    //                 : "Unable to join the beta program."
+    //         );
+    //     } finally {
+    //         setIsSubmitting(false);
+    //     }
+    // };
 
 
     return (
