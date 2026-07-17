@@ -54,10 +54,10 @@ function CurriculumGenerator() {
     // Generate the curriculum preview and retry once if the first request fails
     async function generatePreview() {
         try {
-            setCurriculumText("Generating Curriculum From AI...");
+            setCurriculumText("Generating curriculum from AI...");
 
             const API_BASE_URL =
-                import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
+                import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
 
             const requestOptions = {
                 method: "POST",
