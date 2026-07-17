@@ -83,7 +83,7 @@ def join_beta_program(signup: BetaSignupRequest):
         new_signup = cursor.fetchone()
         connection.commit()
 
-        send_beta_thank_you_email(email)
+       # send_beta_thank_you_email(email)
 
         return {
             "message": "You have successfully joined the beta program.",
