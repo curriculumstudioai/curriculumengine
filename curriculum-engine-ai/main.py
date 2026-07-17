@@ -22,6 +22,11 @@ from models import CurriculumAIOutput
 from prompts import SYSTEM_PROMPT
 from database import save_curriculum_to_database
 
+import smtplib
+
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
 
 
 
@@ -55,7 +60,6 @@ class CurriculumRequest(BaseModel):
     organization_id: int = 1
 
 
-
 @app.post("/api/beta-signup")
 def join_beta_program(signup: BetaSignupRequest):
     email = str(signup.email).strip().lower()
@@ -78,6 +82,8 @@ def join_beta_program(signup: BetaSignupRequest):
 
         new_signup = cursor.fetchone()
         connection.commit()
+
+        send_beta_thank_you_email(email)
 
         return {
             "message": "You have successfully joined the beta program.",
@@ -115,6 +121,44 @@ def join_beta_program(signup: BetaSignupRequest):
 
         if connection:
             connection.close()
+
+
+
+def send_beta_thank_you_email(user_email: str) -> None:
+    sender_email = os.getenv("EMAIL_ADDRESS")
+    email_password = os.getenv("EMAIL_PASSWORD")
+
+    if not sender_email or not email_password:
+        raise ValueError("Email credentials are not configured.")
+
+    subject = "Thank You for Joining the Curriculum Studio Beta Program"
+
+    body = """
+Hello,
+
+Thank you for joining the Curriculum Studio beta program!
+
+We appreciate your interest in Curriculum Studio. More information, product updates,
+and details about the curriculum application will be shared with you soon.
+
+Thank you again for being part of our beta community.
+
+Best regards,
+
+The Curriculum Studio Team
+"""
+
+    message = MIMEMultipart()
+    message["From"] = sender_email
+    message["To"] = user_email
+    message["Subject"] = subject
+    message.attach(MIMEText(body, "plain"))
+
+    with smtplib.SMTP("smtp.gmail.com", 587) as server:
+        server.starttls()
+        server.login(sender_email, email_password)
+        server.send_message(message)
+
 
 
 

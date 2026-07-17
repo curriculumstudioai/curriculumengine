@@ -65,48 +65,6 @@ function LandingPage() {
         }
     };
 
-    // const handleBetaSignup = async (event) => {
-    //     event.preventDefault();
-    //
-    //     setIsSubmitting(true);
-    //     setMessage("");
-    //
-    //     try {
-    //         const response = await fetch(
-    //             `${import.meta.env.VITE_API_URL}/api/beta-signup`,
-    //             {
-    //                 method: "POST",
-    //                 headers: {
-    //                     "Content-Type": "application/json",
-    //                 },
-    //                 body: JSON.stringify({
-    //                     email: email.trim(),
-    //                 }),
-    //             }
-    //         );
-    //
-    //         const data = await response.json();
-    //
-    //         if (!response.ok) {
-    //             throw new Error(
-    //                 data.detail || "Unable to join the beta program."
-    //             );
-    //         }
-    //
-    //         setMessage(data.message);
-    //         setEmail("");
-    //     } catch (error) {
-    //         setMessage(
-    //             error instanceof Error
-    //                 ? error.message
-    //                 : "Unable to join the beta program."
-    //         );
-    //     } finally {
-    //         setIsSubmitting(false);
-    //     }
-    // };
-
-
     return (
         <>
             <header className="site-header">
@@ -157,10 +115,6 @@ function LandingPage() {
                             <Link to="/generate" className="button">
                                 Try Curriculum Studio
                             </Link>
-
-                            {/*<a href="/generate" className="button">*/}
-                            {/*     Try Curriculum Studio*/}
-                            {/*</a>*/}
 
                             <a href="#beta" className="button button-secondary">
                                 Join the Beta
@@ -309,22 +263,6 @@ function LandingPage() {
                                 </p>
                             )}
                         </form>
-                        {/*<form className="signup-form">*/}
-                        {/*    <label htmlFor="email">Email address</label>*/}
-
-                        {/*    <input*/}
-                        {/*        type="email"*/}
-                        {/*        id="email"*/}
-                        {/*        name="email"*/}
-                        {/*        placeholder="you@example.com"*/}
-                        {/*        autoComplete="email"*/}
-                        {/*        required*/}
-                        {/*    />*/}
-
-                        {/*    <button type="submit" className="button">*/}
-                        {/*        Join the Beta*/}
-                        {/*    </button>*/}
-                        {/*</form>*/}
                     </div>
                 </section>
             </main>
