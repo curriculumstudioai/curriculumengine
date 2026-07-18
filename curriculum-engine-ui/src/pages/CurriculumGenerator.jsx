@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import html2pdf from "html2pdf.js";
+import { Link } from "react-router-dom";
 import logo from "../assets/curriculum-studio-logo.png";
 import "../App.css";
 
@@ -118,13 +119,26 @@ function CurriculumGenerator() {
     return (
         <div className="app">
             <header className="hero">
-                <img
-                    src={logo}
-                    alt="Curriculum Studio logo"
-                    className="logo"
-                />
-                <p>Create | Preview | Edit | Copy - AI-Generated Curriculum Content</p>
+                <Link to="/" aria-label="Return to Curriculum Studio home page">
+                    <img
+                        src={logo}
+                        alt="Curriculum Studio logo"
+                        className="logo"
+                    />
+                </Link>
+
+                <p>
+                    Create | Preview | Edit | Copy - AI-Generated Curriculum Content
+                </p>
             </header>
+            {/*<header className="hero">*/}
+            {/*    <img*/}
+            {/*        src={logo}*/}
+            {/*        alt="Curriculum Studio logo"*/}
+            {/*        className="logo"*/}
+            {/*    />*/}
+            {/*    <p>Create | Preview | Edit | Copy - AI-Generated Curriculum Content</p>*/}
+            {/*</header>*/}
 
             <main className="layout">
                 <section className="panel">
