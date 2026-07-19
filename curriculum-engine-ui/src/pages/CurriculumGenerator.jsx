@@ -175,7 +175,13 @@ function CurriculumGenerator() {
 
                     <button onClick={generatePreview}>
                         Generate Preview
-                    </button><br><br><br><br><br>
+                    </button>
+
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
 
                     <div className="early-access-banner">
                         <p>
