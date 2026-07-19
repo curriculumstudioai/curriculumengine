@@ -245,7 +245,7 @@ function LandingPage() {
                                 rel="noopener noreferrer"
                                 className="subscribe-button"
                             >
-                                Subscribe for $5 per Month
+                                Subscribe Today
                             </a>
                         </div>
 
