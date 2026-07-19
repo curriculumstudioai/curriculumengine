@@ -223,17 +223,43 @@ function LandingPage() {
 
                 <section className="beta-section" id="beta">
                     <div className="container beta-content">
-                        <div>
+                        <div className="early-access-details">
                             <p className="section-label">Early Access</p>
 
                             <h2>Help shape Curriculum Studio</h2>
 
                             <p>
-                                Join the beta program to receive product
-                                updates, early access, and opportunities to
-                                provide feedback.
+                                Join Curriculum Studio Early Access to generate
+                                structured curriculum plans, lesson plans,
+                                assessments, activities, and grading rubrics.
                             </p>
+
+                            <p className="subscription-price">
+                                $5 per month during the early-access period.
+                                Cancel anytime.
+                            </p>
+
+                            <a
+                                href="https://buy.stripe.com/28E7sNdtogpmdey8aqfYY00"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="subscribe-button"
+                            >
+                                Subscribe for $5 per Month
+                            </a>
                         </div>
+
+                        {/*<div>*/}
+                        {/*    <p className="section-label">Early Access</p>*/}
+
+                        {/*    <h2>Help shape Curriculum Studio</h2>*/}
+
+                        {/*    <p>*/}
+                        {/*        Join the beta program to receive product*/}
+                        {/*        updates, early access, and opportunities to*/}
+                        {/*        provide feedback.*/}
+                        {/*    </p>*/}
+                        {/*</div>*/}
                         <form className="signup-form" onSubmit={handleBetaSignup}>
                             <label htmlFor="email">Email address</label>
 
@@ -254,7 +280,7 @@ function LandingPage() {
                                 className="button"
                                 disabled={isSubmitting}
                             >
-                                {isSubmitting ? "Joining..." : "Join the Beta"}
+                                {isSubmitting ? "Joining..." : "Join the Beta for Product Updates"}
                             </button>
 
                             {message && (

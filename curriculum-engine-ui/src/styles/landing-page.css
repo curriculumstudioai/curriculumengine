@@ -408,3 +408,38 @@ input {
         justify-content: center;
     }
 }
+
+
+/*Stripe subscription styles*/
+
+  .early-access-details {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+.subscription-price {
+    margin-top: 12px;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.subscribe-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: opacity 0.2s ease;
+}
+
+.subscribe-button:hover {
+    opacity: 0.9;
+}
+
+.subscribe-button:focus-visible {
+    outline: 3px solid #93c5fd;
+    outline-offset: 3px;
+}
