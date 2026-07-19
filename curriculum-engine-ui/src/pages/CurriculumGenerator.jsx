@@ -183,21 +183,25 @@ function CurriculumGenerator() {
                     <br/>
                     <br/>
 
-                    <div className="early-access-banner">
-                        <p>
-                            Support Curriculum Studio and receive early access
-                            for $5 per month.
-                        </p>
+                    <section>
+                        <div className="early-access-banner">
+                            <p>
+                                Support Curriculum Studio and receive early access
+                                for $5 per month.
+                            </p>
 
-                        <a
-                            href="https://buy.stripe.com/28E7sNdtogpmdey8aqfYY00"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="subscribe-button"
-                        >
-                            Subscribe for $5 per Month
-                        </a>
-                    </div>
+                            <a
+                                href="https://buy.stripe.com/28E7sNdtogpmdey8aqfYY00"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="subscribe-button"
+                            >
+                                Subscribe for $5 per Month
+                            </a>
+                        </div>
+                    </section>
+
+
                 </section>
 
                 <section className="panel">
