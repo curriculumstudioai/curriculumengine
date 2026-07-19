@@ -186,8 +186,7 @@ function CurriculumGenerator() {
                     <section>
                         <div className="early-access-banner">
                             <p>
-                                Support Curriculum Studio and receive early access
-                                for $5 per month.
+                                Support Curriculum Studio and receive early access.
                             </p>
 
                             <a
@@ -196,7 +195,7 @@ function CurriculumGenerator() {
                                 rel="noopener noreferrer"
                                 className="subscribe-button"
                             >
-                                Subscribe for $5 per Month
+                                Subscribe Today
                             </a>
                         </div>
                     </section>
